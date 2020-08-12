@@ -29,6 +29,18 @@ BF.inverse = bf_inverse_ebb(BF,S);
 ```
 Where `BF` is the stucture DAiSS uses to store all processing and `S` is a structure containing all options.
 #### Options
+The following options can be called:
+**keeplf:** (*default: false*) Keep oriented leadfields.
+
+**corr:** (*default: false*) Uses correlated source priors. If no pairs matrix is suppled in the *pairs* option, then for every source the homolog in the opposite hemisphere is located for pairing.
+
+**pairs:** (*default: empty string*) .mat file containing a triangular matrix (full or sparse) with non-zero elements representing which sources are correlate with each other. For example if sources 3 and 5 were then the matrix element (3,5) or (5,3) equals 1. To keep a source uncorrelated set its respective diagnoal element to 1.  
+
+**iid:** (*default: false*) Set the prior matrix to an identity matrix, which is the equivalent of a basic minimum-norm inversion.
+
+**noise:** (*default: empty string*) BF.mat file of empty room noise (if an i.i.d noise assumption is not to your liking).
+
+**reml:** (*'strict' | 'loose' [default]*) options for the ReML optimising algorithm, setting to strict will try and balance the weighting of the noise to source matrices with a 1:20 ratio (similar to a 5% regularisation). Loose allows it to freely optimise in the same way as SPM.
 
 ## Citation
 If you find the correlated prior EBB algorithm useful. Please cite the following.
