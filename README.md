@@ -28,8 +28,9 @@ It is posible to directly call the function, though its not really advised to in
 BF.inverse = bf_inverse_ebb(BF,S);
 ```
 Where `BF` is the stucture DAiSS uses to store all processing and `S` is a structure containing all options.
-#### Options
-The following options can be called:
+### Options
+DAiSS is comically undocumented, the following options for the EBB code can be called:
+
 **keeplf:** (*default: false*) Keep oriented leadfields.
 
 **corr:** (*default: false*) Uses correlated source priors. If no pairs matrix is suppled in the *pairs* option, then for every source the homolog in the opposite hemisphere is located for pairing.
