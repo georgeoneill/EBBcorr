@@ -23,7 +23,7 @@ Like most of SPM and its respective toolboxes, DAiSS is typically interfaced wit
 matlabbatch{JOB}.spm.tools.beamforming.inverse.plugin.ebb.OPTION = VALUE;
 ```
 #### Direct call
-It is posible to directly call the function, though its not really advised to this this way normally. 
+It is posible to directly call the function, though its not really advised to in this way. 
 ```
 BF.inverse = bf_inverse_ebb(BF,S);
 ```
