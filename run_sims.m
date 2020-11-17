@@ -1,4 +1,4 @@
-function run_sims_and_inversions(emptyD,location,snr)
+function run_sims(emptyD,location,snr)
 %% Init
 
 % First, work out where we are
@@ -16,6 +16,8 @@ switch location
         coords =   [52.3018  -24.7405    8.0343
             -51.8729  -24.4440   12.2991];
     case 'hippocampus'
+        coords = [24.81 -11.3 -17.46
+            -26.15 -10.73 -18.32];
 end
 
 count = 0;
@@ -53,4 +55,5 @@ for ii = 1:numel(simtype)
 end
 
 [a b] = spm_jobman('run',matlabbatch);
+cd(files.root);
 go_close_non_spm_windows();
