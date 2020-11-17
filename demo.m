@@ -14,10 +14,10 @@ snr = -10;
 load('ctf_sensors.mat');
 
 S = [];
-S.fs = 600;
+S.fs = 1200;
 S.ntrials = 10;
-S.triallength = 2; % in seconds plz
-S.prestim  = 0.5; % how much is prestim? in this case this makes the time range is -0.5 to 1.5.
+S.triallength = 7; % in seconds plz
+S.prestim  = 2; % how much is prestim? in this case this makes the time range is -0.5 to 1.5.
 S.meg.sensors = sensors;
 S.meg.fiducials = fiducials;
 S.filename = emptyD;
@@ -28,8 +28,19 @@ D = go_eeg_touch(S);
 
 % warning: runing this requires about 2 GB of free disk space and takes
 % about 15 mins to process everything.
-run_sims_and_inversions(emptyD,snr);
-
+% run_sims_and_inversions(emptyD,-20);
+run_inversions(emptyD,-20)
+cd  'D:\Documents\GitHub\EBBcorr'
 %% Visualise the results
 
-run_visualise_results(snr);
+% run_visualise_results(-20);
+[Fnew, R2, data] = compare_pipelines(-20);
+% figure; imagesc(features.old.C./features.new.C)
+
+load Fold
+
+
+x = categorical({'old geodesic','new geodisic'});
+bar(x,[Fold.new.diff Fnew.new.diff]);
+ylabel('F(EBBcorr) - F(EBB)')
+title('Dual correlated Simulations: -20 dB SNR');

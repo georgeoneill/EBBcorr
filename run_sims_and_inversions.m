@@ -12,8 +12,8 @@ if ~exist(fullfile(files.root,'sims'))
     mkdir(fullfile(files.root,'sims'));
 end
 
-inversions = {'EBB','EBBcorr','IID'};
-simtype = {'mono','dual_uncorr','dual_corr'};
+inversions = {'EBB','EBBcorr'};
+simtype = {'dual_corr'};
 
 %% Simulations
 locations =   [52.3018  -24.7405    8.0343

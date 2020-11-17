@@ -24,14 +24,14 @@ for ii = 1:numel(inversions)
             count = count + 1;
         end
         
-        BF = load(files.BF,'data','sources','inverse','output');
+        BF = load(files.BF,'inverse');
         F(ii,jj) = BF.inverse.MEG.F;
         
-        subplot(3,3,sub_order(count))
-        S = [];
-        S.ndips = 512;
-        S.cmap = 'gray';
-        go_view_glass(BF,S);
+%         subplot(3,3,sub_order(count))
+%         S = [];
+%         S.ndips = 512;
+%         S.cmap = 'gray';
+%         go_view_glass(BF,S);
         title(sprintf('%s -> %s',inversions{ii},simtype{jj}));
         
     end

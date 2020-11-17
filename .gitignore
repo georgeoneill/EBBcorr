@@ -1,4 +1,4 @@
 *.asv
-proc/
-sims/
+*proc/
+*sims/
 001.*

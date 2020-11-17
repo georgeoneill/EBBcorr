@@ -72,7 +72,7 @@ switch lower(S.modality)
         for ii = 1:numel(S.(S.modality).sensors.chantype)
             D = D.chanlabels(ii,S.(S.modality).sensors.label{ii});
             D = D.chantype(ii,upper(S.(S.modality).sensors.chantype{ii}));
-            D = D.units(ii,upper(S.(S.modality).sensors.chanunit{ii}));
+            D = D.units(ii,'fT'); % SPM seems to like data to be in fT. 
         end
                 
         D = blank(D); % Generates the .dat file.
