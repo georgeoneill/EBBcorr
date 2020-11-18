@@ -36,10 +36,10 @@ D = go_add_mni_cortex(S);
 % warning: runing this requires about 2 GB of free disk space and takes
 % about 15 mins to process everything.
 for snr = -30:2:0
-    run_sims(emptyD,'heschl',snr);
-    run_inversions('heschl',snr);
-    run_sims(emptyD,'hippocampus',snr);
-    run_inversions('hippocampus',snr);
+%     run_sims(emptyD,'heschl',snr);
+    run_inversions('heschl',snr,'inverseonly');
+%     run_sims(emptyD,'hippocampus',snr);
+    run_inversions('hippocampus',snr,'inverseonly');
 end
 %% Visualise the results
 

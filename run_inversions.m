@@ -12,7 +12,10 @@ end
 % inversions = {'EBB_uncorr','EBB_corr_uncorr_on','EBB_corr_uncorr_off',...
 %     'EBB_corr_uncorr_both','EBB_corr_on','EBB_corr_off','EBB_corr_both'};
 
-inversions = {'EBB_corr_on','EBB_corr_off','EBB_corr_both'};
+% inversions = {'EBB_corr_on','EBB_corr_off','EBB_corr_both'};
+
+inversions = {'EBB_uncorr','EBB_corr_uncorr_on','EBB_corr_uncorr_off',...
+    'EBB_corr_uncorr_both'};
 simtype = {'mono','dual_uncorr','dual_corr'};
 
 
