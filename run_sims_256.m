@@ -1,37 +1,35 @@
-function run_sims(emptyD,location,snr)
+function run_sims_256(emptyD,location,id)
 %% Init
 
 % First, work out where we are
-[files.root,~,~] = fileparts(mfilename('fullpath'));
+files.root = 'D:\sims_256\';
 % files.root = fullfile(files.root,'sourcetest');
 
 
-if ~exist(fullfile(files.root,'sims',location))
-    mkdir(fullfile(files.root,'sims',location));
+if ~exist(fullfile(files.root,'sims'))
+    mkdir(fullfile(files.root,'sims'));
 end
 
 simtype = {'mono','dual_uncorr','dual_corr'};
 % simtype = {'dual_uncorr','dual_corr'};
 
+snr = -10;
 
 %% Simulations
-switch location
-    case 'heschl'
-        coords =   [52.3018  -24.7405    8.0343
-            -51.8729  -24.4440   12.2991];
-    case 'hippocampus'
-        coords = [24.81 -11.3 -17.46
-            -26.15 -10.73 -18.32];
-    case 'hippbody'
-        coords = [25.79 -24.83 -11.21
-            -26.0642  -25.7586  -12.8783];
-end
+x = location(1);
+y = location(2);
+z = location(3);
+
+coords = [x y z;
+    -x y z];
+
 
 count = 0;
 matlabbatch = [];
+superbatch = [];
 for ii = 1:numel(simtype)
     jj = simtype{ii};
-    count = count + 1;
+    count = 1;
     switch jj
         case 'mono'
             freqs=[20]; %% correlated
@@ -47,9 +45,9 @@ for ii = 1:numel(simtype)
             dipmom=[10 5;10 5]; % dual
             locs = coords;
     end
-    simname = fullfile(files.root,'sims',location,[jj '_sim_' num2str(snr) 'dB_']);
+    simname = fullfile(files.root,'sims',[sprintf('%03d',id) '_' jj '_sim_' num2str(snr) 'dB_']);
     % Run the simulations
-    matlabbatch{count}.spm.meeg.source.simulate.D = {emptyD};
+    matlabbatch{count}.spm.meeg.source.simulate.D = {fullfile(emptyD.path,emptyD.fname)};
     matlabbatch{count}.spm.meeg.source.simulate.val = 1;
     matlabbatch{count}.spm.meeg.source.simulate.prefix = simname;
     matlabbatch{count}.spm.meeg.source.simulate.whatconditions.all = 1;
@@ -58,10 +56,17 @@ for ii = 1:numel(simtype)
     matlabbatch{count}.spm.meeg.source.simulate.isinversion.setsources.dipmom = dipmom;
     matlabbatch{count}.spm.meeg.source.simulate.isinversion.setsources.locs =locs;
     matlabbatch{count}.spm.meeg.source.simulate.isSNR.setSNR = snr;
+   
+    superbatch{end+1} = matlabbatch;
     
 end
 
-[a b] = spm_jobman('run',matlabbatch);
-cd(files.root);
+parfor ii = 1:numel(superbatch);
+[a b] = spm_jobman('run',superbatch{ii});
+end
+
+% cd(files.root);
 % cd('..')
+[files.root,~,~] = fileparts(mfilename('fullpath'));
+cd(files.root);
 go_close_non_spm_windows();

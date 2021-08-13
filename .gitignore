@@ -2,3 +2,5 @@
 *proc/
 *sims/
 001.*
+*.mat
+*.eps
