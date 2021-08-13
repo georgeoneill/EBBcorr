@@ -32,4 +32,4 @@ run_sims_and_inversions(emptyD,snr);
 cd  'D:\Documents\GitHub\EBBcorr'
 %% Visualise the results
 
-run_visualise_results(-20);
+run_visualise_results(snr);
