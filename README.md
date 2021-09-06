@@ -45,4 +45,4 @@ DAiSS is comically undocumented, the following options for the EBB code can be c
 
 ## Citation
 If you find the correlated prior EBB algorithm useful. Please cite the following.
-> A Bayesian beamformer with correlated priors: application to hippocampal source reconstruction. (Under review).
+> O’Neill, G.C., Barry, D.N., Tierney, T.M. _et al._ Testing covariance models for MEG source reconstruction of hippocampal activity. Sci Rep **11**, 17615 (2021). https://www.nature.com/articles/s41598-021-96933-0
