@@ -2,21 +2,12 @@
  Demo code to replicate the simuations performed in *A Bayesian beamformer with correlated priors: application to hippocampal source reconstruction* 
 
 ## Requirements 
-- SPM12 https://www.fil.ion.ucl.ac.uk/spm/software/spm12/
-- DAiSS Toolbox: https://github.com/spm/DAiSS. (NOTE the EBB code is in the DAiSS repository [here](https://github.com/spm/DAiSS/blob/master/bf_inverse_ebb.m), this is just an example pipeline which uses it).
+- SPM https://github.com/spm/spm
 
-If you have SPM already installed you can update it directly from MATLAB 
-```
->> spm_update
-         A new version of SPM is available.
->> spm_update update
-         Download and install in progress...
-         Success: xx files have been updated.
-```
-To install DAiSS copy the repository into the `toolbox` folder in you SPM root folder in MATLAB. 
+The code for performing the source reconstruction with the DAiSS Toolbox is all within the SPM repository.
 
 ## Usage
-The [EBB solver DAiSS](https://github.com/spm/DAiSS/blob/master/bf_inverse_ebb.m) can be interfaced with in two ways.
+The [EBB solver in DAiSS](https://github.com/spm/spm/blob/master/bf_inverse_ebb.m) can be interfaced with in two ways.
 #### Using MATLAB Batch
 Like most of SPM and its respective toolboxes, DAiSS is typically interfaced with using the MATLAB Batch, an exmple of it can be seen in [here](https://github.com/georgeoneill/EBBcorr/blob/master/run_sims_and_inversions.m#L129) but in short you can call the options using 
 ```
@@ -35,7 +26,7 @@ DAiSS is comically undocumented, the following options for the EBB code can be c
 
 **corr:** (*default: false*) Uses correlated source priors. If no pairs matrix is suppled in the *pairs* option, then for every source the homolog in the opposite hemisphere is located for pairing.
 
-**pairs:** (*default: empty string*) .mat file containing a triangular matrix (full or sparse) with non-zero elements representing which sources are correlate with each other. For example if sources 3 and 5 were then the matrix element (3,5) or (5,3) equals 1. To keep a source uncorrelated set its respective diagnoal element to 1.  
+**pairs:** (*default: empty string*) .mat file containing a triangular matrix (full or sparse) with non-zero elements representing which sources are correlate with each other. For example if sources 3 and 5 are correlated then the matrix element (3,5) or (5,3) should equal 1. To keep a source uncorrelated set its respective diagonal element to 1. (e.g. source 4 is uncorrelated so (4,4) = 1).
 
 **iid:** (*default: false*) Set the prior matrix to an identity matrix, which is the equivalent of a basic minimum-norm inversion.
 
