@@ -7,7 +7,7 @@
 The code for performing the source reconstruction with the DAiSS Toolbox is all within the SPM repository.
 
 ## Usage
-The [EBB solver in DAiSS](https://github.com/spm/spm/blob/master/bf_inverse_ebb.m) can be interfaced with in two ways.
+The [EBB solver in DAiSS](https://github.com/spm/spm/blob/main/toolbox/DAiSS/bf_inverse_ebb.m) can be interfaced with in two ways.
 #### Using MATLAB Batch
 Like most of SPM and its respective toolboxes, DAiSS is typically interfaced with using the MATLAB Batch, an exmple of it can be seen in [here](https://github.com/georgeoneill/EBBcorr/blob/master/run_sims_and_inversions.m#L129) but in short you can call the options using 
 ```
